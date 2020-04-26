@@ -22,11 +22,28 @@ void test01(){
         cout << "not found" << endl;
     }
     else cout << "found" << endl;
+}
 
+class myCompare {
+    public:
+        bool operator()(int v1, int v2){
+            return v1 > v2;
+        }
+};
+
+void test02(){
+    vector<int> v;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+
+    sort(v.begin(), v.end(), myCompare());
 }
 
 int main(){
-    test01();
+    //test01();
+
+    test02();
 
     return 0;
 }
