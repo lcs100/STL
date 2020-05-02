@@ -61,10 +61,9 @@ namespace mySTL{
         typedef Distance   
     }
 
-
-
-
 };
+
+#endif
 
 
 

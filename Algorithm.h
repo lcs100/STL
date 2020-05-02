@@ -66,3 +66,19 @@ void sort(RandomIterator first, RandomIterator last, BinaryPredicate pred){
     sort(p1 + 1, last, pred);
 }
 
+template<class InputIterator,class OutputIterator>
+OutputIt set_intersection(InputIterator first1, InputIterator last1,
+                            InputIterator first2, InputIterator last2,
+                            OutputIterator d_first){
+    while(first != last1 && first2 != last2){
+        if(*first1 < *first2) ++first1;
+        else {
+            if(!(*first2 < *first1)){
+                *d_first++ = *first1++;
+            }
+            ++first2;
+        }
+    }
+
+    return d_first;
+})
