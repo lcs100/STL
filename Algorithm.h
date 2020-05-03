@@ -82,3 +82,43 @@ OutputIt set_intersection(InputIterator first1, InputIterator last1,
 
     return d_first;
 })
+
+template<class InputIterator, class OutputIterator>
+OutputIt set_union(InputIterator first1, InputIterator last1,
+                    InputIterator first2, InputIterator last2,
+                    OutputIterator d_first){
+    for(; first1 != last1; ++d_first){
+        if(first2 == last2)
+            return std::copy(first1, last1, d_first);
+        
+        if(*first2 < *first1)
+            *d_first = *first2++;
+        
+        else{
+            *d_first = *first1;
+            if(!(*first1 < *first2))
+                ++first2;
+            ++first1;
+        }
+    }
+
+    return std::copy(first2, last2, d_first);
+}
+
+template<class InputIterator, class OutputIterator>
+OutputIt set_difference(InputIterator first1, InputIterator last1,
+                        InputIterator first2, InputIterator last2,
+                        OutputIterator d_first)
+{
+    while(first1 != last1){
+        if(first2 == last2) return std::copy(first1, last2, d_first);
+
+        if(*first1 < *first2) *d_first++ = *first1++;
+        else {
+            if(!(*first2 < *first1)) ++first1;
+            ++first2;
+        }
+    }
+
+    return d_first;
+}
